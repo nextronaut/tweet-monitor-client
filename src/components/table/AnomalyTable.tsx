@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Anomaly } from '../../utils/types';
+import { anomalyColor } from '../../utils';
 
 interface AnomalyProps {
     data: Anomaly[];
@@ -27,7 +28,7 @@ const AnomalyTable: React.FC<AnomalyProps>  = ({ data }) => {
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
           {tableData.map(anomaly => (
-            <tr key={anomaly._id}>
+            <tr key={anomaly._id} className={`${anomalyColor(anomaly)}`}>
               <td className="px-6 py-4 whitespace-nowrap">{anomaly.platform}</td>
               <td className="px-6 py-4 whitespace-nowrap">{anomaly.startId}</td>
               <td className="px-6 py-4 whitespace-nowrap">{anomaly.endId}</td>
