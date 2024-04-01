@@ -8,6 +8,8 @@ import AnomalyTable from "../../../components/table/AnomalyTable";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const AnomalyList = () => {
   const { platform } = useParams();
   const [anomalies, setAnomalies] = useState<Anomaly[]>([]);
@@ -24,7 +26,7 @@ const AnomalyList = () => {
     }
 
     const eventSource = new EventSource(
-      `http://localhost:3001/api/anomalies/sse/${platform}`
+      `${apiUrl}/anomalies/sse/${platform}`
     );
     eventSource.onmessage = (event) => {
       const data = JSON.parse(event.data);
