@@ -1,4 +1,5 @@
 export interface Anomaly {
+  _id: string,
   platform: string;
   startId: string;
   startDate: Date;
@@ -11,6 +12,7 @@ export interface Anomaly {
 }
 
 export interface Tweet {
+  _id: string,
   platform: string;
   platformId: string;
   content: string;
