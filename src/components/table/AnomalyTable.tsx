@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Anomaly } from '../../utils/types';
 
 interface AnomalyProps {
@@ -6,6 +6,14 @@ interface AnomalyProps {
 }
 
 const AnomalyTable: React.FC<AnomalyProps>  = ({ data }) => {
+  const [tableData, setTableData] = useState<Anomaly[]>([])
+
+  useEffect(() => {
+    if(data) {
+        setTableData(data)
+    }
+  }, [data])
+
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full divide-y divide-gray-200">
@@ -18,7 +26,7 @@ const AnomalyTable: React.FC<AnomalyProps>  = ({ data }) => {
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-          {data.map(anomaly => (
+          {tableData.map(anomaly => (
             <tr key={anomaly._id}>
               <td className="px-6 py-4 whitespace-nowrap">{anomaly.platform}</td>
               <td className="px-6 py-4 whitespace-nowrap">{anomaly.startId}</td>
